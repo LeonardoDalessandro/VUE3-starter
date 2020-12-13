@@ -20,16 +20,15 @@ function getEntity (): string {
  * ------------------------------
  */
 
-async function getListPublic (parameters = {}) {
+async function getListPublic (endpoint: string, parameters = {}) {
 
   const params = { ...parameters }
 
+  setEntity(endpoint)
+
   try {
     const response = await api.baseAPI.get(`${entity}`, { params })
-    /*const data = {
-      content: response.data.data,
-      total: Number(response.headers['x-total-count'])
-    }*/
+
     const message = `${entity} public list: loaded`
 
     return responseObj._getResponseObj(response.status, message, response.data)
@@ -40,7 +39,10 @@ async function getListPublic (parameters = {}) {
   }
 }
 
-async function getByIdPublic (id:number) {
+async function getByIdPublic (endpoint: string, id:number) {
+
+  setEntity(endpoint)
+
   try {
     const response = await api.baseAPI.get(`${entity}/${id}`)
     const message = `${entity} public item: loaded`
@@ -60,7 +62,10 @@ async function getByIdPublic (id:number) {
  */
 const isAuth:boolean = AuthService.getIsAuth()
 
-async function getById (id:number) {
+async function getById (endpoint: string, id:number) {
+
+  setEntity(endpoint)
+
   if (isAuth) {
     try {
       const response = await api.baseAPI.get(`${entity}/${id}`)
@@ -75,7 +80,10 @@ async function getById (id:number) {
   }
 }
 
-async function create (data:Object = {}) {
+async function create (endpoint: string, data:Object = {}) {
+
+  setEntity(endpoint)
+
   if (isAuth) {
     try {
       const response = await api.baseAPI.post(`${entity}`, data)
@@ -90,7 +98,10 @@ async function create (data:Object = {}) {
   }
 }
 
-async function update (id:number, data:Object = {}) {
+async function update (endpoint: string, id:number, data:Object = {}) {
+
+  setEntity(endpoint)
+
   if (isAuth) {
     try {
       const response = await api.baseAPI.put(`${entity}/${id}`, data)
@@ -105,7 +116,10 @@ async function update (id:number, data:Object = {}) {
   }
 }
 
-async function remove (id:number) {  
+async function remove (endpoint: string, id:number) {
+
+  setEntity(endpoint)
+
   if (isAuth) {
     try {
       const response = await api.baseAPI.delete(`${entity}/${id}`)
