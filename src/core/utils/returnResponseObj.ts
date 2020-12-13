@@ -1,11 +1,11 @@
 import {ResponseInterface} from '@/core/models/responseModels'
 import getStatusProps from './returnStatusProps'
 
-function _getResponseObj (code: number, message: string, data: object): ResponseInterface {
+function _getResponseObj (code: number, message: string, data: any): ResponseInterface {
   const newObject: ResponseInterface = {
     statusCode: 0,
     statusMessage: '',
-    data: {}
+    data: null
   }
 
   newObject.statusCode = code

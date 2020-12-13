@@ -3,6 +3,8 @@
   router-link(to="/") Home
   | <span></span> | <span></span>
   router-link(to="/about") About
+  | <span></span> | <span></span>
+  router-link(to="/posts") List post
 
 router-view/
 </template>

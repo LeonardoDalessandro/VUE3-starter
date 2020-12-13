@@ -1,5 +1,5 @@
 export interface ResponseInterface {
   statusCode: number;
-  statusMessage?: string;
-  data: Object;
+  statusMessage?: string | null;
+  data?: any;
 }
