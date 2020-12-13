@@ -1,0 +1,74 @@
+// * ========================================================================
+//   # CONCEPT -> Component - base button
+//   ======================================================================== */
+
+@import '../../assets/scss/settings/_MAP__';
+@import '../../assets/scss/tools/_MAP__';
+
+/*******************
+** === STYLES === **
+*******************/
+
+// CURSOR
+%btn-cursor{
+  cursor: pointer;
+}
+
+// BORDER RADIUS
+$r1: 10px; $r2: 5px; $r3: 5px; $r4: 5px; $r5: 5px;
+$w1: 100px; $w2: 100px; $w3: 100px; $w4: 100px; $w5: 100px; $wr: 1.5;
+%btn-shape-default{
+  @include responsive-prop('border-radius', $r1, $r2, $r3, $r4, $r5);
+  @include responsive-prop('min-width', $w1, $w2, $w3, $w4, $w5);
+  @include responsive-prop('max-width', $w1 * $wr, $w2 * $wr, $w3 * $wr, $w4 * $wr, $w5 * $wr);
+}
+%btn-shape-circle{
+  border-radius: 50%;
+}
+
+// FONTS
+$f1: 12px; $f2: 12px; $f3: 12px; $f4: 12px; $f5: 12px;
+%btn-font-sm{
+  @include responsive-prop('font-size', $f1, $f2, $f3, $f4, $f5);
+}
+
+// SIZES DEFAULT
+$h1: 25px; $h2: 25px; $h3: 25px; $h4: 25px; $h5: 25px;
+%btn-default-sm{
+  @include responsive-prop('height', $h1, $h2, $h3, $h4, $h5);
+}
+
+// SIZES CIRCLE & SQUARE
+$s1: 25px; $s2: 25px; $s3: 25px; $s4: 25px; $s5: 25px; $r:1;
+%btn-regular-sm{
+  @include responsive-prop('height', $s1, $s2, $s3, $s4, $s5);
+  @include responsive-prop('width', $s1, $s2, $s3, $s4, $s5);
+}
+
+// SKINS
+$c1: $color-brand-1; $c2: #fff;
+%btn-skin-filled-brand{ @include btn-skin-generator($c1, $c2, 'true'); }
+%btn-skin-stroked-brand{ @include btn-skin-generator($c1, $c2, 'false'); }
+
+// SHADOW
+%btn-shadow{
+  @include shadow(0px, 0px, 10px, 0px, rgba(0,0,0,0.3));
+
+  &:hover, &:focus{
+    @include shadow(0px, 0px, 5px, 0px, rgba(0,0,0,0.7));
+  }
+}
+
+
+/*******************
+** === RENDER === **
+*******************/
+
+.c-btn{
+  &.c-btn--sm-brand-filled{
+    @include extend-array('btn-', 'shape-default', 'default-sm', 'font-sm', 'skin-filled-brand', 'cursor', 'shadow')
+  }
+  &.c-btn--sm-brand-stroked{
+    @include extend-array('btn-', 'shape-circle', 'regular-sm', 'font-sm', 'skin-stroked-brand', 'cursor')
+  }
+}

@@ -1,0 +1,90 @@
+// * ========================================================================
+//   # CONCEPT -> Component - base input
+//   ======================================================================== */
+
+@import '../../assets/scss/settings/_MAP__';
+@import '../../assets/scss/tools/_MAP__';
+
+/*******************
+** === STYLES === **
+*******************/
+
+// LABEL LAYOUT
+$mb1: 5px; $mb2: 5px; $mb3: 5px; $mb4: 5px; $mb5: 5px;
+%label-layout{
+  @include responsive-prop('margin-bottom', $mb1, $mb2, $mb3, $mb4, $mb5);
+}
+
+// LABEL SKIN
+$c1: $medium-gray;
+%label-skin{
+  color: $c1;
+}
+
+// LABEL FONT
+$f1: 16px; $f2: 5px; $f3: 5px; $f4: 5px; $f5: 5px;
+%label-font{
+  @include responsive-prop('font-size', $f1, $f2, $f3, $f4, $f5);
+}
+
+// INPUT LAYOUT
+$pv1: 10px; $pv2: 5px; $pv3: 5px; $pv4: 5px; $pv5: 5px;
+$ph1: 10px; $ph2: 5px; $ph3: 5px; $ph4: 5px; $ph5: 5px;
+
+%input-layout{
+  @include responsive-prop('padding-top', $pv1, $pv2, $pv3, $pv4, $pv5);
+  @include responsive-prop('padding-bottom', $pv1, $pv2, $pv3, $pv4, $pv5);
+  @include responsive-prop('padding-left', $ph1, $ph2, $ph3, $ph4, $ph5);
+  @include responsive-prop('padding-right', $ph1, $ph2, $ph3, $ph4, $ph5);
+  @include responsive-prop('margin-bottom', $mb1, $mb2, $mb3, $mb4, $mb5);
+}
+
+// INPUT SKIN
+$c1: $dark-gray; $c2: $status-error; $c3: $status-error-2;
+%input-skin{
+  color:$c1;
+
+  &.c-field__input--error{
+    color: $c2;
+    border-bottom: 3px solid $c3;
+  }
+}
+
+// INPUT FONT
+$f1: 20px; $f2: 5px; $f3: 5px; $f4: 5px; $f5: 5px;
+%input-font{
+  @include responsive-prop('font-size', $f1, $f2, $f3, $f4, $f5);
+}
+
+// ERROR LAYOUT
+$mt1: null; $mt2: 5px; $mt3: 5px; $mt4: 5px; $mt5: 5px;
+%input-error-layout{
+  @include responsive-prop('margin-top', $mt1, $mt2, $mt3, $mt4, $mt5);
+}
+
+// ERROR SKIN
+%input-error-skin{
+  color: $c2 !important;
+}
+
+// ERROR FONT
+$f1: 14px; $f2: 5px; $f3: 5px; $f4: 5px; $f5: 5px;
+%input-error-font{
+  @include responsive-prop('font-size', $f1, $f2, $f3, $f4, $f5);
+}
+
+/*******************
+** === RENDER === **
+*******************/
+
+.c-field-group{
+  .c-field__label{
+    @include extend-array('label-', 'layout', 'skin', 'font')
+  }
+  .c-field__input{
+    @include extend-array('input-', 'layout', 'skin', 'font')
+  }
+  .c-field__error{
+    @include extend-array('input-error-', 'layout', 'skin', 'font')
+  }
+}

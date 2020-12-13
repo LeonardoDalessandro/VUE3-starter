@@ -1,0 +1,24 @@
+/* ==========================================================================
+   # Form elements
+   ========================================================================== */
+
+
+label, input, textarea, select{display:block;}
+
+select, option{cursor:pointer !important;}
+
+input, textarea, select{
+  $c1: $dark-gray; $c2: $medium-gray; $c3: $light-gray;
+  border: 1px solid $c3;
+  color: $c1;
+  width: 100%;
+
+  &:focus{
+    outline: none;
+    @include shadow(0px, 0px, 10px, 0px, rgba(0,0,0,0.3))
+  }
+
+  @include input-placeholder {
+    color: $c3;
+  }
+}

@@ -1,0 +1,42 @@
+// * ========================================================================
+//   # TOOLS -> Generator - Button skins
+//   ======================================================================== */
+
+/*
+** === USAGE ===
+**
+** @include btn-skin-generator($c1, $c2, $filled);
+** $c1, $c2 => must be a color hex
+** $filled => must be string => 'true' || 'false'
+**
+**
+** === EXAMPLE USE ===
+**
+** .class{
+**   @include btn-skin-generator(#f00, #00f, $filled = true);
+** }
+**
+**
+**
+**
+*/
+
+
+@mixin btn-skin-generator($c1, $c2, $filled){
+  // Debug => verify input
+  $errorMessageColor: "$colorType must be a color value (your values: #{$c1}, #{$c2})";
+  @if type-of($c1) != 'color' { @error $errorMessageColor; }
+  @if type-of($c2) != 'color' { @error $errorMessageColor; }
+  
+  // Return
+  border: 1px solid $c1;
+
+  @if $filled == 'true' {
+    background-color: $c1; color: $c2;
+    &:hover{ background: none; color: $c1;  }
+  }
+  @if $filled == 'false' {
+    color: $c1; 
+    &:hover{ background-color: $c1; color: $c2; }
+  }
+}

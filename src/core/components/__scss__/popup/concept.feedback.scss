@@ -1,0 +1,81 @@
+// * ========================================================================
+//   # CONCEPT -> Component - Notification feedback message
+//   ======================================================================== */
+
+@import '../../assets/scss/settings/_MAP__';
+@import '../../assets/scss/tools/_MAP__';
+
+/*******************
+** === STYLES === **
+*******************/
+
+// WRAPPER
+%notification-wrapper-layout{
+  position:fixed;
+  top: 30px;
+
+  width: 100vw;
+}
+
+// LAYOUT
+$w1: 700px; $w2: 100px; $w3: 100px; $w4: 100px; $w5: 100px; $wr: 1.5;
+$pv1: 20px; $pv2: 5px; $pv3: 5px; $pv4: 5px; $pv5: 5px;
+$ph1: 40px; $ph2: 5px; $ph3: 5px; $ph4: 5px; $ph5: 5px;
+  
+%notification-layout{
+  @include responsive-prop('width', $w1, $w2, $w3, $w4, $w5);
+  @include responsive-prop('padding-top', $pv1, $pv2, $pv3, $pv4, $pv5);
+  @include responsive-prop('padding-bottom', $pv1, $pv2, $pv3, $pv4, $pv5);
+  @include responsive-prop('padding-left', $ph1, $ph2, $ph3, $ph4, $ph5);
+  @include responsive-prop('padding-right', $ph1, $ph2, $ph3, $ph4, $ph5);
+  margin-left: auto; margin-right: auto;
+}
+
+// FONTS
+$f1: 16px; $f2: 12px; $f3: 12px; $f4: 12px; $f5: 12px;
+%notification-font{
+  @include responsive-prop('font-size', $f1, $f2, $f3, $f4, $f5);
+}
+
+
+// SKINS
+$b: 8px;
+$c1: $status-valid; $c2: #fff;
+%notification-skin-green{
+  background-color: $c1; color: $c2;
+  border-bottom: $b solid $c2;
+}
+$c1: $status-alert; $c2: #fff; $c3: $medium-gray;
+%notification-skin-yellow{
+  background-color: $c1; color: $c3;
+  border-bottom: $b solid $c2;
+}
+$c1: $status-error; $c2: #fff;
+%notification-skin-red{
+  background-color: $c1; color: $c2;
+  border-bottom: $b solid $c2;
+}
+
+// SHADOW
+%notification-shadow{
+  @include shadow(0px, 0px, 10px, 0px, rgba(0,0,0,0.5));
+}
+
+
+/*******************
+** === RENDER === **
+*******************/
+
+.c-notification{
+  @extend %notification-wrapper-layout;
+
+  .c-notification--success{
+    @include extend-array('notification-', 'layout', 'font', 'skin-green', 'shadow')
+  }
+  .c-notification--warning{
+    @include extend-array('notification-', 'layout', 'font', 'skin-yellow', 'shadow')
+  }
+  .c-notification--error{
+    @include extend-array('notification-', 'layout', 'font', 'skin-red', 'shadow')
+  }
+}
