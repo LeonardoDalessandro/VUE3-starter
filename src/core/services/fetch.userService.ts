@@ -5,12 +5,12 @@ import responseObj from '@/core/utils/returnResponseObj'
 
 
 const entity = 'users'
-const isAuth:boolean = AuthService.getIsAuth()
+const isAuth: boolean = AuthService.checkIsAuth()
 
 async function getCurrent () {
   if (isAuth) {
     try {
-      const response = await api.baseAPI.get(`${entity}/current`)
+      const response = await api.baseAPI.get(`${entity}/current`, AuthService.getAuthorization())
       const message = `Selected ${entity} updated`
 
       return responseObj._getResponseObj(response.status, message, response.data)

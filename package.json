@@ -16,8 +16,10 @@
     "@fortawesome/vue-fontawesome": "^2.0.0",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.20",
     "register-service-worker": "^1.7.1",
     "vue": "^3.0.0",
+    "vue-recaptcha-v3": "^2.0.0",
     "vue-router": "^4.0.0-0",
     "vuelidate": "^0.7.6",
     "vuex": "^4.0.0-0",
@@ -25,6 +27,7 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
+    "@types/lodash": "^4.14.165",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",

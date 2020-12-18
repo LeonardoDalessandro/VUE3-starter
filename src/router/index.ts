@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import baseRoutes from '@/core/router/base.route.map'
 
 // App project routes
-import routeMap from '@/router/route.map'
+import routeMap from '@/router/routes'
 
 const routes = [...routeMap.map, ...baseRoutes.map];
 

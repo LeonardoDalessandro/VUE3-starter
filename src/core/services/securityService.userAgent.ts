@@ -1,5 +1,4 @@
 import api from '@/core/services/api'
-import US from '@/core/config/_userstackFingerprint'
 
 function stringToHash(string: string) {                  
   let hash:string | number = 0; 

@@ -60,7 +60,7 @@ async function getByIdPublic (endpoint: string, id:number) {
  * @API_CALLS_PRIVATE
  * ------------------------------
  */
-const isAuth:boolean = AuthService.getIsAuth()
+const isAuth = AuthService.checkIsAuth()
 
 async function getById (endpoint: string, id:number) {
 
@@ -68,7 +68,7 @@ async function getById (endpoint: string, id:number) {
 
   if (isAuth) {
     try {
-      const response = await api.baseAPI.get(`${entity}/${id}`)
+      const response = await api.baseAPI.get(`${entity}/${id}`, AuthService.getAuthorization())
       const message = `${entity} private item: loaded`
 
       return responseObj._getResponseObj(response.status, message, response.data)
@@ -86,7 +86,7 @@ async function create (endpoint: string, data:Object = {}) {
 
   if (isAuth) {
     try {
-      const response = await api.baseAPI.post(`${entity}`, data)
+      const response = await api.baseAPI.post(`${entity}`, data, AuthService.getAuthorization())
       const message = `New ${entity} created`
 
       return responseObj._getResponseObj(response.status, message, {})
@@ -104,7 +104,7 @@ async function update (endpoint: string, id:number, data:Object = {}) {
 
   if (isAuth) {
     try {
-      const response = await api.baseAPI.put(`${entity}/${id}`, data)
+      const response = await api.baseAPI.put(`${entity}/${id}`, data, AuthService.getAuthorization())
       const message = `Selected ${entity} updated`
 
       return responseObj._getResponseObj(response.status, message, {})
@@ -122,7 +122,7 @@ async function remove (endpoint: string, id:number) {
 
   if (isAuth) {
     try {
-      const response = await api.baseAPI.delete(`${entity}/${id}`)
+      const response = await api.baseAPI.delete(`${entity}/${id}`, AuthService.getAuthorization())
       const message = `Selected ${entity} deleted`
 
       return responseObj._getResponseObj(response.status, message, {})

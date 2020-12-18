@@ -1,5 +1,5 @@
 import api from '@/core/services/api'
-import securityService from '@/core/services/securityService'
+import securityService from '@/core/services/securityService.userAgent'
 
 import responseObj from '@/core/utils/returnResponseObj'
 import $store from '@/store/index'
@@ -7,8 +7,8 @@ import $store from '@/store/index'
 import { AuthinputDataInterface } from '@/core/models/authModels'
 
 
-let BEARER: string = ''
 let isAuth: boolean = false
+let tokenKeyName: string = 'accessToken'
 
 /**
  ******************************
@@ -58,20 +58,19 @@ async function makeLogout () {
   ******************************
   */
 
-function getBearer () {
-  return BEARER
+function getAuthorization (): object {
+  const token = getToken()
+  return {
+    headers: { Authorization: `Bearer ${token}` }
+  }
 }
 
-function setBearer (accessToken:string) {
-  BEARER = `Bearer ${accessToken}`
-}
+function checkIsAuth (): boolean {
+  const token = getToken()
 
-function getIsAuth () {
-  return isAuth
-}
+  if (token) { setIsAuthTrue() }
 
-function setIsAuth (val:boolean) {
-  isAuth = val
+  return getIsAuth()
 }
 
 /**
@@ -79,23 +78,43 @@ function setIsAuth (val:boolean) {
  * @private_methods
  ******************************
  */
+function getIsAuth (): boolean {
+  return isAuth
+}
+
+function setIsAuthTrue () {
+  isAuth = true
+}
+
+function getToken () {
+  const storedItem = window.localStorage.getItem(tokenKeyName) 
+
+  return `Bearer ${storedItem}`
+}
+
+function storeToken (accessToken:string) {
+  window.localStorage.setItem(tokenKeyName, accessToken)
+}
+
+function clearToken () {
+  window.localStorage.removeItem(tokenKeyName)
+}
 
 function _resetAuthData () {
   $store.commit('user/SET_CURRENT_USER', {})
 
   // reset tokens
-  setBearer('')
-  setIsAuth(false)
+  clearToken()
 }
 
 function _setAuthData (accessToken:string) {
-  setBearer(accessToken)
-  setIsAuth(true)
+  storeToken(accessToken)
+  setIsAuthTrue()
 }
 
 export default {
   makeLogin,
   makeLogout,
-  getBearer,
-  getIsAuth
+  getAuthorization,
+  checkIsAuth
 }
